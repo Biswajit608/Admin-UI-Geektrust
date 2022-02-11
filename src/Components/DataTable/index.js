@@ -25,6 +25,8 @@ function DataTable({
 
   const [isAnyRowCheck, setIsAnyRowCheck] = useState(false);
 
+  const [flag, setFlag] = useState(null);
+
   // function to handle the employees data when page number is changed
   const handleCurrentPageEmployeesData = () => {
     const start = (currentPage - 1) * employeesPerPage;
@@ -55,6 +57,8 @@ function DataTable({
     setIsAnyRowCheck(result);
   };
 
+  const abc = (id) => setFlag(id);
+
   useEffect(() => {
     isAnyRowChecked(filteredEmployees);
     setTotalPages(Math.ceil(filteredEmployees.length / employeesPerPage));
@@ -63,8 +67,6 @@ function DataTable({
   useEffect(() => {
     handleCurrentPageEmployeesData();
   }, [currentPage, filteredEmployees]);
-
-  console.log(currentPage, employeesDataInCurrentPage);
 
   return (
     <div className="table-container">
@@ -96,12 +98,16 @@ function DataTable({
               handleCheckedRow={handleCheckedRow}
               handleDeleteRow={handleDeleteRow}
               handleEditRow={handleEditRow}
+              abc={abc}
+              flag={flag}
             />
           ))}
         </tbody>
       </table>
       <div className="table-bottom">
-        <button onClick={handleDeleteAllSelected}>Delete Selected</button>
+        {totalPages >= 1 && (
+          <button onClick={handleDeleteAllSelected}>Delete Selected</button>
+        )}
         {totalPages >= 1 && (
           <Paginate
             currentPage={currentPage}

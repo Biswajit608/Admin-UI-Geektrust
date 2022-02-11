@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import "./index.css";
 
 const getPaginateButtons = (startPageNumber, lastPageNumber) => {
@@ -14,7 +15,6 @@ function Paginate({
   employeesPerPage,
   totalPages,
 }) {
-  console.log(currentPage, employeesPerPage);
   const [startPageNumber, setStartPageNumber] = useState(1);
   const [lastPageNumber, setLastPageNumber] = useState(totalPages);
   const [pageNumberRange, setPageNumberRange] = useState(
@@ -44,10 +44,19 @@ function Paginate({
     setCurrentPage((currentPage) => Math.min(currentPage + 1, totalPages));
   };
 
+  const checkPageNumberRange = () => {
+    setPageNumberRange(getPaginateButtons(startPageNumber, totalPages, 1));
+  };
+
+  useEffect(() => {
+    checkPageNumberRange();
+  }, [totalPages, currentPage]);
+
   return (
     <div className="paginate-container">
       <button onClick={goToFirstPage}>&lt;&lt;</button>
       <button onClick={goToPreviousPage}>&lt;</button>
+
       {pageNumberRange.map((pageNumber, index) => {
         return (
           <button key={index} onClick={() => handlePageChange(pageNumber)}>
@@ -55,6 +64,7 @@ function Paginate({
           </button>
         );
       })}
+
       <button onClick={goToNextPage}>&gt;</button>
       <button onClick={goToLastPage}>&gt;&gt;</button>
     </div>

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./index.css";
 
 function DataTableRow({
@@ -7,48 +10,112 @@ function DataTableRow({
   handleCheckedRow,
   handleDeleteRow,
   handleEditRow,
+  abc,
+  flag,
 }) {
-  const [wanToEdit, setWantToEdidt] = useState(false);
+  const [wantToEdit, setWantToEdit] = useState(false);
   const [employeeData, setEmployeeData] = useState(rowData);
 
+  // function to handle the cancel icon of each row
+  const handleCancelClickOnIcon = () => {
+    setEmployeeData(rowData);
+    setWantToEdit(false);
+    abc(null);
+  };
+
+  // function to handle the save icon of each row
+  const handleSaveClickOnIcon = () => {
+    handleEditRow(employeeData);
+    setWantToEdit(false);
+    abc(null);
+  };
+
+  // function to handle the edit icon of each row
+  const handleEditClickOnIcon = () => {
+    abc(rowData.id);
+  };
+
+  // function to handle when we want to edit the employee data row
+  const handleEmployeeDataChange = (event) => {
+    if (wantToEdit) {
+      const { name, value } = event.target;
+
+      setEmployeeData({ ...employeeData, [name]: value });
+    }
+  };
+
+  useEffect(() => {
+    flag === rowData.id ? setWantToEdit(true) : setWantToEdit(false);
+  }, [flag, rowData.id]);
+
   return (
-    <tr>
-      <td>
-        <input type="checkbox" name="" id="" />
-      </td>
-      <td>
-        <div>
-          <input type="text" name="name" value={employeeData.name} readOnly />
-        </div>
-      </td>
-      <td>
-        <div>
-          <input type="text" name="email" value={employeeData.email} readOnly />
-        </div>
-      </td>
-      <td>
-        <div>
-          <input type="text" name="role" value={employeeData.role} readOnly />
-        </div>
-      </td>
-      <td>
-        <div>
-          {wanToEdit ? (
-            <>
-              <span></span>
-              <span>
-                <DeleteOutlineOutlinedIcon />
-              </span>
-            </>
-          ) : (
-            <>
-              <span></span>
-              <span></span>
-            </>
-          )}
-        </div>
-      </td>
-    </tr>
+    <>
+      <tr>
+        <td>
+          <input
+            type="checkbox"
+            onChange={() => handleCheckedRow(rowData.id)}
+            checked={employeeData.isChecked ? "checked" : ""}
+          />
+        </td>
+        <td>
+          <div>
+            <input
+              type="text"
+              name="name"
+              value={employeeData.name}
+              onChange={handleEmployeeDataChange}
+            />
+          </div>
+        </td>
+        <td>
+          <div>
+            <input
+              type="text"
+              name="email"
+              value={employeeData.email}
+              onChange={handleEmployeeDataChange}
+            />
+          </div>
+        </td>
+        <td>
+          <div>
+            <input
+              type="text"
+              name="role"
+              value={employeeData.role}
+              onChange={handleEmployeeDataChange}
+            />
+          </div>
+        </td>
+        <td>
+          <div>
+            {wantToEdit ? (
+              <>
+                <span className="icon" onClick={handleSaveClickOnIcon}>
+                  <SaveOutlinedIcon />
+                </span>
+                <span className="icon" onClick={handleCancelClickOnIcon}>
+                  <CloseOutlinedIcon />
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="icon" onClick={handleEditClickOnIcon}>
+                  <EditOutlinedIcon />
+                </span>
+                <span
+                  className="icon"
+                  onClick={() => handleDeleteRow(rowData.id)}
+                >
+                  <DeleteOutlineOutlinedIcon />
+                </span>
+              </>
+            )}
+          </div>
+        </td>
+      </tr>
+    </>
   );
 }
 

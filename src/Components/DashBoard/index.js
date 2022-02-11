@@ -10,6 +10,10 @@ const DashBoard = () => {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [searchString, setSearchString] = useState("");
 
+
+  console.log("employess", employees);
+  console.log("filteredEmployees", filteredEmployees);
+
   const fetchEmployeesData = async () => {
     try {
       const response = await axios.get(endpoint);
