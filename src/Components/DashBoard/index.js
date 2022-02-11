@@ -22,8 +22,6 @@ const DashBoard = () => {
     }
   };
 
-  console.log(filteredEmployees);
-
   // Function to handle, when row is selected
   const handleCheckedRow = (id) => {
     const tempEmployees = [...employees];
@@ -35,9 +33,17 @@ const DashBoard = () => {
     setEmployees(tempEmployees);
   };
 
+  // function to handle the delete button at footer
   const handleDeleteRow = (id) => {
     let tempEmployees = [...employees];
     tempEmployees = tempEmployees.filter((employee) => employee.id !== id);
+    setEmployees(tempEmployees);
+  };
+
+  const handleDeleteAllSelected = () => {
+    let tempEmployees = [...employees];
+    tempEmployees = tempEmployees.filter((employee) => !employee.isChecked);
+
     setEmployees(tempEmployees);
   };
 
@@ -106,6 +112,7 @@ const DashBoard = () => {
           handleCheckedRow={handleCheckedRow}
           handleEditRow={handleEditRow}
           handleDeleteRow={handleDeleteRow}
+          handleDeleteAllSelected={handleDeleteAllSelected}
         />
       </div>
     </div>
