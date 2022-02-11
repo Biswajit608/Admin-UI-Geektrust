@@ -90,7 +90,13 @@ function DataTable({
         </thead>
         <tbody>
           {employeesDataInCurrentPage.map((employee) => (
-            <DataTableRow key={employee.id} row={employee} />
+            <DataTableRow
+              key={employee.id}
+              rowData={employee}
+              handleCheckedRow={handleCheckedRow}
+              handleDeleteRow={handleDeleteRow}
+              handleEditRow={handleEditRow}
+            />
           ))}
         </tbody>
       </table>
