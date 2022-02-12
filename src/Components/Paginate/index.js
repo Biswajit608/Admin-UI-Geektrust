@@ -54,19 +54,47 @@ function Paginate({
 
   return (
     <div className="paginate-container">
-      <button onClick={goToFirstPage}>&lt;&lt;</button>
-      <button onClick={goToPreviousPage}>&lt;</button>
+      <button
+        className={`btn ${currentPage === 1 ? "inactive-btn" : ""}`}
+        disabled={currentPage === 1 ? "disabled" : ""}
+        onClick={goToFirstPage}
+      >
+        &lt;&lt;
+      </button>
+      <button
+        className={`btn ${currentPage === 1 ? "inactive-btn" : ""}`}
+        disabled={currentPage === 1 ? "disabled" : ""}
+        onClick={goToPreviousPage}
+      >
+        &lt;
+      </button>
 
       {pageNumberRange.map((pageNumber, index) => {
         return (
-          <button key={index} onClick={() => handlePageChange(pageNumber)}>
+          <button
+            className={`btn ${currentPage === pageNumber ? "active-btn" : ""}`}
+            key={index}
+            onClick={() => handlePageChange(pageNumber)}
+          >
             {pageNumber}
           </button>
         );
       })}
 
-      <button onClick={goToNextPage}>&gt;</button>
-      <button onClick={goToLastPage}>&gt;&gt;</button>
+      <button
+        className={`btn ${currentPage === totalPages ? "inactive-btn" : ""}`}
+        disabled={currentPage === totalPages ? "disabled" : ""}
+        onClick={goToNextPage}
+      >
+        &gt;
+      </button>
+      <button
+        className={`btn ${currentPage === totalPages ? "inactive-btn" : ""}`}
+        disabled={currentPage === totalPages ? "disabled" : ""}
+        onClick={goToLastPage}
+      >
+        &gt;&gt;
+      </button>
     </div>
   );
 }

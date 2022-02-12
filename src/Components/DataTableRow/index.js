@@ -50,7 +50,7 @@ function DataTableRow({
 
   return (
     <>
-      <tr>
+      <tr className={rowData.isChecked ? "row-highlight" : ""}>
         <td>
           <input
             type="checkbox"
@@ -61,6 +61,9 @@ function DataTableRow({
         <td>
           <div>
             <input
+              className={`row-data-field ${
+                rowData.isChecked ? "row-highlight" : ""
+              } ${wantToEdit ? "editable" : "non-editable"}`}
               type="text"
               name="name"
               value={employeeData.name}
@@ -71,6 +74,9 @@ function DataTableRow({
         <td>
           <div>
             <input
+              className={`row-data-field ${
+                rowData.isChecked ? "row-highlight" : ""
+              } ${wantToEdit ? "editable" : "non-editable"}`}
               type="text"
               name="email"
               value={employeeData.email}
@@ -81,6 +87,9 @@ function DataTableRow({
         <td>
           <div>
             <input
+              className={`row-data-field ${
+                rowData.isChecked ? "row-highlight" : ""
+              } ${wantToEdit ? "editable" : "non-editable"}`}
               type="text"
               name="role"
               value={employeeData.role}
@@ -89,7 +98,7 @@ function DataTableRow({
           </div>
         </td>
         <td>
-          <div>
+          <div className="icon-container">
             {wantToEdit ? (
               <>
                 <span className="icon" onClick={handleSaveClickOnIcon}>

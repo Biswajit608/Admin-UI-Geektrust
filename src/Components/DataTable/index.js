@@ -77,16 +77,16 @@ function DataTable({
               <input type="checkbox" onChange={handleTopCheckBox} />
             </th>
             <th>
-              <div>Name</div>
+              <div className="table-heading">Name</div>
             </th>
             <th>
-              <div>Email</div>
+              <div className="table-heading">Email</div>
             </th>
             <th>
-              <div>Role</div>
+              <div className="table-heading">Role</div>
             </th>
             <th>
-              <div>Actions</div>
+              <div className="table-heading">Actions</div>
             </th>
           </tr>
         </thead>
@@ -106,7 +106,15 @@ function DataTable({
       </table>
       <div className="table-bottom">
         {totalPages >= 1 && (
-          <button onClick={handleDeleteAllSelected}>Delete Selected</button>
+          <button
+            className={
+              !isAnyRowCheck ? "inactive-delete-all-btn" : "delete-all-btn"
+            }
+            disabled={!isAnyRowCheck ? "disabled" : ""}
+            onClick={handleDeleteAllSelected}
+          >
+            Delete Selected
+          </button>
         )}
         {totalPages >= 1 && (
           <Paginate

@@ -1,0 +1,46 @@
+.row-highlight {
+  background-color: aliceblue;
+}
+
+.row-data-field {
+  border: none;
+  text-align: center;
+  width: 100%;
+}
+
+.row-data-field:focus {
+  outline: none;
+}
+
+.row-data-field.editable {
+  border-radius: 0.2rem;
+}
+
+.row-data-field.editable:focus {
+  border: 1px solid black;
+}
+
+.row-data-field.non-editable {
+  caret-color: transparent;
+  border: none;
+}
+
+.icon-container {
+  padding: 0.25rem;
+}
+
+.icon {
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 728px) {
+  .row-data-field {
+    display: flex;
+    font-size: 1.10rem;
+  }
+
+  .icon-container {
+    display: flex;
+  }
+}

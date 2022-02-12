@@ -1,0 +1,31 @@
+.btn {
+  border-radius: 50%/50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  background-color: rgba(24,144,255,255);
+  color: white;
+  vertical-align: middle;
+}
+
+.active-btn {
+  background-color: white;
+  color: rgba(24,144,255,255);
+  border: 1px solid rgba(24,144,255,255);
+}
+
+.inactive-btn {
+  background-color: #c0c0c0;
+  color: black;
+  cursor: default;
+}
+
+@media screen and (max-width: 728px) {
+  .btn {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+}

@@ -3,13 +3,13 @@ import axios from "axios";
 import { endpoint } from "../../config";
 // import { useSnackbar } from "notistack";
 import DataTable from "../DataTable/index";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import "./index.css";
 const DashBoard = () => {
   // const { enqueueSnackbar } = useSnackbar();
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [searchString, setSearchString] = useState("");
-
 
   console.log("employess", employees);
   console.log("filteredEmployees", filteredEmployees);
@@ -102,13 +102,16 @@ const DashBoard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="seach-bar">
+      <div className="search-bar-box">
         <input
           type="text"
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
           placeholder="Search by name, email or role"
         />
+        <span className="search-bar-icon">
+          <SearchOutlinedIcon />
+        </span>
       </div>
       <div className="dashboard">
         <DataTable
