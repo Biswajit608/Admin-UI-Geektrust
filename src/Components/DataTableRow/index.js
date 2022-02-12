@@ -10,7 +10,7 @@ function DataTableRow({
   handleCheckedRow,
   handleDeleteRow,
   handleEditRow,
-  abc,
+  handleFlag,
   flag,
 }) {
   const [wantToEdit, setWantToEdit] = useState(false);
@@ -20,19 +20,19 @@ function DataTableRow({
   const handleCancelClickOnIcon = () => {
     setEmployeeData(rowData);
     setWantToEdit(false);
-    abc(null);
+    handleFlag(null);
   };
 
   // function to handle the save icon of each row
   const handleSaveClickOnIcon = () => {
     handleEditRow(employeeData);
     setWantToEdit(false);
-    abc(null);
+    handleFlag(null);
   };
 
   // function to handle the edit icon of each row
   const handleEditClickOnIcon = () => {
-    abc(rowData.id);
+    handleFlag(rowData.id);
   };
 
   // function to handle when we want to edit the employee data row

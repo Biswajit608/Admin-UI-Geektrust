@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { endpoint } from "../../config";
-// import { useSnackbar } from "notistack";
+import { useSnackbar } from "notistack";
 import DataTable from "../DataTable/index";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import "./index.css";
+
 const DashBoard = () => {
-  // const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [searchString, setSearchString] = useState("");
 
-  console.log("employess", employees);
-  console.log("filteredEmployees", filteredEmployees);
-
+  //function to fetch the employees data
   const fetchEmployeesData = async () => {
     try {
       const response = await axios.get(endpoint);
@@ -22,7 +21,8 @@ const DashBoard = () => {
       });
       setEmployees(finalResponse);
     } catch (e) {
-      //   handleError(e);
+      // console.log(e.response.statusText);
+      handleError(e);
     }
   };
 
@@ -44,6 +44,7 @@ const DashBoard = () => {
     setEmployees(tempEmployees);
   };
 
+  //function to handle the delete selected button functionality
   const handleDeleteAllSelected = () => {
     let tempEmployees = [...employees];
     tempEmployees = tempEmployees.filter((employee) => !employee.isChecked);
@@ -64,16 +65,19 @@ const DashBoard = () => {
     setEmployees(tempEmployees);
   };
 
-  // const handleError = (e) => {
-  //   if (e.response) {
-  //     enqueueSnackbar(e.response.data.error.message, { variant: "error" });
-  //   } else {
-  //     enqueueSnackbar(
-  //       "Something went wrong. Check that the backend is running",
-  //       { variant: "error" }
-  //     );
-  //   }
-  // };
+  //function to handle the error while doing network call
+  const handleError = (e) => {
+    if (e.response) {
+      enqueueSnackbar(`${e.response.statusText} check your API endpoint`, {
+        variant: "error",
+      });
+    } else {
+      enqueueSnackbar(
+        "Something went wrong. Check that the backend is running",
+        { variant: "error" }
+      );
+    }
+  };
 
   // useEffect to fetch the employees data
   useEffect(() => {

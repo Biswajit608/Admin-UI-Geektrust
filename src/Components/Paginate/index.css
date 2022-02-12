@@ -6,15 +6,15 @@
   cursor: pointer;
   border: none;
   text-align: center;
-  background-color: rgba(24,144,255,255);
+  background-color: rgba(24, 144, 255, 255);
   color: white;
   vertical-align: middle;
 }
 
 .active-btn {
   background-color: white;
-  color: rgba(24,144,255,255);
-  border: 1px solid rgba(24,144,255,255);
+  color: rgba(24, 144, 255, 255);
+  border: 1px solid rgba(24, 144, 255, 255);
 }
 
 .inactive-btn {
@@ -27,5 +27,6 @@
   .btn {
     width: 2.35rem;
     height: 2.35rem;
+    margin-top: 1.25rem;
   }
 }

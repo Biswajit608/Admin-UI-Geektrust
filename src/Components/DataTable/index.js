@@ -57,7 +57,8 @@ function DataTable({
     setIsAnyRowCheck(result);
   };
 
-  const abc = (id) => setFlag(id);
+  //function to handle flag state variable which help in selecting row/edit row
+  const handleFlag = (id) => setFlag(id);
 
   useEffect(() => {
     isAnyRowChecked(filteredEmployees);
@@ -98,7 +99,7 @@ function DataTable({
               handleCheckedRow={handleCheckedRow}
               handleDeleteRow={handleDeleteRow}
               handleEditRow={handleEditRow}
-              abc={abc}
+              handleFlag={handleFlag}
               flag={flag}
             />
           ))}
