@@ -61,6 +61,7 @@ function Paginate({
       >
         &lt;&lt;
       </button>
+
       <button
         className={`btn ${currentPage === 1 ? "inactive-btn" : ""}`}
         disabled={currentPage === 1 ? "disabled" : ""}
@@ -88,6 +89,7 @@ function Paginate({
       >
         &gt;
       </button>
+
       <button
         className={`btn ${currentPage === totalPages ? "inactive-btn" : ""}`}
         disabled={currentPage === totalPages ? "disabled" : ""}
